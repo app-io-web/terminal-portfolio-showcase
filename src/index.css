@@ -9,11 +9,11 @@
 
 @layer base {
   :root {
-    /* Terminal Dark Theme */
-    --background: 220 20% 4%;
+    /* Terminal Dark Theme - Pure Black */
+    --background: 0 0% 0%;
     --foreground: 120 100% 50%;
 
-    --card: 220 20% 6%;
+    --card: 0 0% 0%;
     --card-foreground: 120 100% 50%;
 
     --popover: 220 20% 6%;
@@ -25,7 +25,7 @@
     --secondary: 180 100% 50%;
     --secondary-foreground: 220 20% 4%;
 
-    --muted: 220 15% 15%;
+    --muted: 0 0% 8%;
     --muted-foreground: 120 40% 60%;
 
     --accent: 180 100% 50%;
@@ -35,7 +35,7 @@
     --destructive-foreground: 210 40% 98%;
 
     --border: 120 100% 25%;
-    --input: 220 15% 15%;
+    --input: 0 0% 5%;
     --ring: 120 100% 50%;
 
     --radius: 0.25rem;

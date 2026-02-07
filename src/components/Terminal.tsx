@@ -233,51 +233,34 @@ export const Terminal = () => {
 
   return (
     <div 
-      className="min-h-screen bg-background p-4 md:p-8 flex items-center justify-center"
+      className="min-h-screen w-full bg-background flex flex-col"
       onClick={focusInput}
     >
       {/* Scanlines overlay */}
       <div className="fixed inset-0 scanlines pointer-events-none z-10" />
       
-      <div className="w-full max-w-4xl">
-        {/* Terminal window */}
-        <div className="terminal-border rounded-lg overflow-hidden bg-card">
-          {/* Terminal header */}
-          <div className="flex items-center gap-2 px-4 py-3 bg-muted border-b border-border">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-terminal-red" />
-              <div className="w-3 h-3 rounded-full bg-terminal-yellow" />
-              <div className="w-3 h-3 rounded-full bg-terminal-green" />
-            </div>
-            <span className="ml-4 text-sm text-muted-foreground">
-              guest@portfolio: ~
-            </span>
-          </div>
+      {/* Full screen terminal */}
+      <div 
+        ref={terminalRef}
+        className="flex-1 p-4 md:p-6 overflow-y-auto font-mono text-sm md:text-base"
+      >
+        {history.map((item, index) => (
+          <TerminalOutput key={index} item={item} />
+        ))}
+        
+        <TerminalInput
+          ref={inputRef}
+          value={currentCommand}
+          onChange={setCurrentCommand}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
 
-          {/* Terminal content */}
-          <div 
-            ref={terminalRef}
-            className="p-4 h-[70vh] overflow-y-auto font-mono text-sm md:text-base"
-          >
-            {history.map((item, index) => (
-              <TerminalOutput key={index} item={item} />
-            ))}
-            
-            <TerminalInput
-              ref={inputRef}
-              value={currentCommand}
-              onChange={setCurrentCommand}
-              onKeyDown={handleKeyDown}
-            />
-          </div>
-        </div>
-
-        {/* Footer hint */}
-        <div className="mt-4 text-center text-muted-foreground text-sm">
-          <span className="animate-glow">
-            Dica: Use as setas ↑↓ para navegar no histórico e Tab para autocompletar
-          </span>
-        </div>
+      {/* Footer hint */}
+      <div className="p-4 text-center text-muted-foreground text-xs border-t border-border/30">
+        <span className="animate-glow">
+          ↑↓ histórico • Tab autocompletar • help comandos
+        </span>
       </div>
     </div>
   );
